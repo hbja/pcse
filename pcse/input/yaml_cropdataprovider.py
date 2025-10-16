@@ -236,7 +236,8 @@ class YAMLCropDataProvider(MultiCropDataProvider):
         if not os.path.exists(fname):
             msg = f"Cannot find 'crops.yaml' at {fname}"
             raise exc.PCSEError(msg)
-        crop_names = yaml.safe_load(open(fname))["available_crops"]
+        with open(fname, "r") as fp:
+            crop_names = yaml.safe_load(fp)["available_crops"]
         crop_yaml_fnames = {crop: os.path.join(fpath, crop + ".yaml") for crop in crop_names}
         for crop, fname in crop_yaml_fnames.items():
             if not os.path.exists(fname):

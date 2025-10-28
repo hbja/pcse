@@ -64,25 +64,27 @@ LOG_CONFIG = \
                     },
                 },
                 'handlers': {
-                    'console': {
-                        'level':LOG_LEVEL_CONSOLE,
-                        'class':'logging.StreamHandler',
-                        'formatter':'brief'
+                    # 'console': {
+                    #     'level':LOG_LEVEL_CONSOLE,
+                    #     'class':'logging.StreamHandler',
+                    #     'formatter':'brief'
+                    "null": {
+                        "class": "logging.NullHandler"
                     },
-                    'file': {
-                        'level':LOG_LEVEL_FILE,
-                        'class':'logging.handlers.RotatingFileHandler',
-                        'formatter':'standard',
-                        'filename':LOG_FILE_NAME,
-                        'maxBytes': 1024**2,
-                        'backupCount': 7,
-                        'mode':'a',
-                        'encoding': 'utf8'
-                    },
+                    # 'file': {
+                    #     'level':LOG_LEVEL_FILE,
+                    #     'class':'logging.handlers.RotatingFileHandler',
+                    #     'formatter':'standard',
+                    #     'filename':LOG_FILE_NAME,
+                    #     'maxBytes': 1024**2,
+                    #     'backupCount': 7,
+                    #     'mode':'a',
+                    #     'encoding': 'utf8'
+                    # },
                 },
                 'root': {
-                         'handlers': ['console', 'file'],
-                         'propagate': True,
+                         'handlers': ['null'],
+                         'propagate': False,
                          'level':'NOTSET'
                 }
             }

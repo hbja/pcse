@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2004-2024 Wageningen Environmental Research, Wageningen-UR
 # Allard de Wit (allard.dewit@wur.nl), March 2024
+
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+
 import types
 import logging
 from datetime import date
@@ -34,7 +39,7 @@ class SimulationObject(HasTraits, DispatcherObject):
     _for_finalize = Dict()
 
     def __init__(self, day, kiosk, *args, **kwargs):
-        HasTraits.__init__(self, *args, **kwargs)
+        HasTraits.__init__(self, *args)
 
         # Check that day variable is specified
         if not isinstance(day, date):
@@ -251,8 +256,7 @@ class AncillaryObject(HasTraits, DispatcherObject):
     params = Instance(ParamTemplate)
 
     def __init__(self, kiosk, *args, **kwargs):
-        HasTraits.__init__(self, *args, **kwargs)
-
+        HasTraits.__init__(self, *args)
         # Check that kiosk variable is specified and assign to self
         if not isinstance(kiosk, VariableKiosk):
             this = "%s.%s" % (self.__class__.__module__, self.__class__.__name__)

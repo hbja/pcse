@@ -44,7 +44,8 @@ class ConfigurationLoader(object):
         # Load file using execfile
         try:
             loc = {}
-            bytecode = compile(open(model_config_file).read(), model_config_file, 'exec')
+            with open(model_config_file, "r") as f:
+                bytecode = compile(f.read(), model_config_file, 'exec')
             exec(bytecode, {}, loc)
         except Exception as e:
             msg = "Failed to load configuration from file '%s' due to: %s"

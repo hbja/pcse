@@ -251,7 +251,7 @@ class OpenMeteoWeatherDataProvider(WeatherDataProvider):
         "knmi_seamless" model will be: OpenMeteoWeatherDataProvider_LAT00525_LON-1247_knmi_.cache
         """
 
-        fname = "%s_LAT%03i_LON%03i_%s.cache" % (self.__class__.__name__,
+        fname = "%s_LAT%08i_LON%08i_%s.cache" % (self.__class__.__name__,
                                                  int(latitude * 10000), int(longitude * 10000),
                                                  self.model[:5])
         cache_filename = os.path.join(settings.METEO_CACHE_DIR, fname)
